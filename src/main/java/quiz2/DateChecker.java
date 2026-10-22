@@ -8,7 +8,8 @@ public class DateChecker {
         }
         return switch (month) {
             case JANUARY, MARCH, MAY, JULY, AUGUST, OCTOBER, DECEMBER -> true;
-            default -> false;
+            case APRIL, JUNE, SEPTEMBER, NOVEMBER -> false;
+            case FEBRUARY -> false; // 28 or 29 days, never 31, so leap years don't matter
         };
     }
 }

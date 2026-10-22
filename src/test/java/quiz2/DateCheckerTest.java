@@ -20,7 +20,7 @@ class DateCheckerTest {
 
     @Test
     void aprilDoesNotHave31Days() {
-        assertFalse(checker.has31Days(Month.APRIL), " April has 30 days, not 31");
+        assertFalse(checker.has31Days(Month.APRIL), "April has 30 days, not 31");
     }
 
     @ParameterizedTest(name = "{0} has 31 days")
