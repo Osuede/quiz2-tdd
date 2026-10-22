@@ -1,6 +1,8 @@
 package quiz2;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
@@ -31,5 +33,17 @@ class DateCheckerTest {
     @EnumSource(value = Month.class, names = { "APRIL", "JUNE", "SEPTEMBER", "NOVEMBER" })
     void monthsWith30Days(Month month) {
         assertFalse(checker.has31Days(month), month + " has 30 days, not 31");
+    }
+
+    @Test
+    void februaryDoesNotHave31Days() {
+        assertFalse(checker.has31Days(Month.FEBRUARY), "February has 28 or 29 days, never 31");
+    }
+
+    @Test
+    void nullMonthThrowsIllegalArgumentException() {
+        IllegalArgumentException exception =
+                assertThrows(IllegalArgumentException.class, () -> checker.has31Days(null));
+        assertEquals("month must not be null", exception.getMessage());
     }
 }
